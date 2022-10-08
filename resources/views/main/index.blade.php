@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12">
-            <h1>{{ config('app.name', 'Blog') }}</h1>
+            <h1>{{ config('app.name', 'First`s Blog') }}</h1>
             <!-- <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
