@@ -4,19 +4,49 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Categories</h1>
+                        <h1 class="mt-4">Create new Category</h1>
                         You here:
-                        <ol class="breadcrumb mb-4">
+                        <ol class="breadcrumb mb-4 border-bottom">
                             <li class="breadcrumb-item">Dashboard</li>
                             <span class="px-1"> / </span>
-                            <li class="breadcrumb-item active">Categories</li>
+                            <li class="breadcrumb-item">Categories</li>
+                            <span class="px-1"> / </span>
+                            <li class="breadcrumb-item active">Create new Category</li>
                         </ol>
                         <div class="row">
-                            <div class="col-12">
-                                <a href="{{ route('admin.category.create') }}" class="btn btn-success">Add new Category</a>
+                            <div class="col-4 mx-0">
+                                <form action="#" method="post">
+                                    <div class="mb-3">
+                                        <label for="categoryTitle" class="form-label">Category title</label>
+                                        <input type="email" class="form-control" id="categoryTitle" placeholder="Input Category title">
+                                    </div>
+                                    <div class="mt-3">
+                                        <input type="submit" class="btn btn-success" value="Create Category">
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <!-- <div class="card mb-4">
+                        <!-- <div class="row">
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-area me-1"></i>
+                                        Area Chart Example
+                                    </div>
+                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-bar me-1"></i>
+                                        Bar Chart Example
+                                    </div>
+                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
                                 DataTable Example
