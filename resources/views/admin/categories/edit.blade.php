@@ -15,8 +15,9 @@
                         </ol>
                         <div class="row">
                             <div class="col-4 mx-0">
-                                <form action="#{{-- {{ route('admin.category.store') }} --}}" method="post" id="storeCategory">
+                                <form action="{{ route('admin.category.update', $category->id) }}" method="post" id="storeCategory">
                                     @csrf
+                                    @method('patch')
                                     <div class="mb-3">
                                         <label for="categoryTitle" class="form-label">Category title</label>
                                         <input name="title" type="title" class="form-control" id="categoryTitle" placeholder="Input Category title" value="{{ $category->title }}">

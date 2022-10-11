@@ -39,7 +39,7 @@
                                                 <td>{{ $category->title }}</td>
                                                 <td class="d-flex justify-content-evenly">
                                                     <a href="{{ route('admin.category.show', $category->id) }}"><i class="far fa-eye"></i></a>
-                                                    <a href="{{ route('admin.category.edit', $category->id) }}"><i class="fas fa-pencil-alt"></i></a>
+                                                    <a href="{{ route('admin.category.edit', $category->id) }}" class="text-success"><i class="fas fa-pencil-alt"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

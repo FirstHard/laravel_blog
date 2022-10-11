@@ -4,14 +4,14 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Create new Category</h1>
+                        <h1 class="mt-4">{{ $category->title }} <a href="{{ route('admin.category.edit', $category->id) }}" class="text-success"><i class="fas fa-pencil-alt"></i></a></h1>
                         You here:
                         <ol class="breadcrumb mb-4 border-bottom">
                             <li class="breadcrumb-item">Dashboard</li>
                             <span class="px-1"> / </span>
                             <li class="breadcrumb-item">Categories</li>
                             <span class="px-1"> / </span>
-                            <li class="breadcrumb-item active">Show Category</li>
+                            <li class="breadcrumb-item active">{{ $category->title }}</li>
                         </ol>
                         <div class="row">
                             <div class="col-4 mx-0">
