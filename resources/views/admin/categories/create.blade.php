@@ -15,10 +15,14 @@
                         </ol>
                         <div class="row">
                             <div class="col-4 mx-0">
-                                <form action="#" method="post">
+                                <form action="{{ route('admin.category.store') }}" method="post" id="storeCategory">
+                                    @csrf
                                     <div class="mb-3">
                                         <label for="categoryTitle" class="form-label">Category title</label>
-                                        <input type="email" class="form-control" id="categoryTitle" placeholder="Input Category title">
+                                        <input name="title" type="title" class="form-control" id="categoryTitle" placeholder="Input Category title">
+                                        @error('title')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="mt-3">
                                         <input type="submit" class="btn btn-success" value="Create Category">

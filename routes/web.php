@@ -6,6 +6,7 @@ use App\Http\Controllers\Main\IndexController;
 use App\Http\Controllers\Admin\Main\IndexController as AdminIndexController;
 use App\Http\Controllers\Admin\Category\IndexController as AdminCategoryIndexController;
 use App\Http\Controllers\Admin\Category\CreateController as AdminCategoryCreateController;
+use App\Http\Controllers\Admin\Category\StoreController as AdminCategoryStoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('categories')->name('category.')->group(function () {
         Route::get('/', AdminCategoryIndexController::class)->name('index');
         Route::get('/create', AdminCategoryCreateController::class)->name('create');
+        Route::post('/', AdminCategoryStoreController::class)->name('store');
     });
 });
 
