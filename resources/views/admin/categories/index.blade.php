@@ -4,16 +4,43 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Categories</h1>
-                        You here:
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item">Dashboard</li>
-                            <span class="px-1"> / </span>
-                            <li class="breadcrumb-item active">Categories</li>
-                        </ol>
+                        <div class="row">
+                            <div class="col-12">
+                                <h1 class="mt-4">Categories</h1>
+                                You here:
+                                <ol class="breadcrumb mb-4">
+                                    <li class="breadcrumb-item">Dashboard</li>
+                                    <span class="px-1"> / </span>
+                                    <li class="breadcrumb-item active">Categories</li>
+                                </ol>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-12">
                                 <a href="{{ route('admin.category.create') }}" class="btn btn-success">Add new Category</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <h4>Categories:</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Title</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($categories as $category)
+                                            <tr>
+                                                <th scope="row">{{ $category->id }}</th>
+                                                <td>{{ $category->title }}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                         <!-- <div class="card mb-4">
