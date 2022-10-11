@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Category\IndexController as AdminCategoryIndexCon
 use App\Http\Controllers\Admin\Category\CreateController as AdminCategoryCreateController;
 use App\Http\Controllers\Admin\Category\StoreController as AdminCategoryStoreController;
 use App\Http\Controllers\Admin\Category\ShowController as AdminCategoryShowController;
+use App\Http\Controllers\Admin\Category\EditController as AdminCategoryEditController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/create', AdminCategoryCreateController::class)->name('create');
         Route::post('/', AdminCategoryStoreController::class)->name('store');
         Route::get('/{category}', AdminCategoryShowController::class)->name('show');
+        Route::get('/{category}/edit', AdminCategoryEditController::class)->name('edit');
     });
 });
 

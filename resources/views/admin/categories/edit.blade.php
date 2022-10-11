@@ -4,51 +4,53 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
+                        <h1 class="mt-4">Edit a Category "{{ $category->title }}"</h1>
+                        You here:
+                        <ol class="breadcrumb mb-4 border-bottom">
+                            <li class="breadcrumb-item">Dashboard</li>
+                            <span class="px-1"> / </span>
+                            <li class="breadcrumb-item">Categories</li>
+                            <span class="px-1"> / </span>
+                            <li class="breadcrumb-item active">Edit a Category "{{ $category->title }}"</li>
+                        </ol>
                         <div class="row">
-                            <div class="col-12">
-                                <h1 class="mt-4">Categories</h1>
-                                You here:
-                                <ol class="breadcrumb border-bottom">
-                                    <li class="breadcrumb-item">Dashboard</li>
-                                    <span class="px-1"> / </span>
-                                    <li class="breadcrumb-item active">Categories</li>
-                                </ol>
+                            <div class="col-4 mx-0">
+                                <form action="#{{-- {{ route('admin.category.store') }} --}}" method="post" id="storeCategory">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label for="categoryTitle" class="form-label">Category title</label>
+                                        <input name="title" type="title" class="form-control" id="categoryTitle" placeholder="Input Category title" value="{{ $category->title }}">
+                                        @error('title')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mt-3">
+                                        <input type="submit" class="btn btn-success" value="Save Category">
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-12">
-                                <a href="{{ route('admin.category.create') }}" class="btn btn-success">Add new Category</a>
+                        <!-- <div class="row">
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-area me-1"></i>
+                                        Area Chart Example
+                                    </div>
+                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-12">
-                                <h4>Categories:</h4>
-                                <div class="table-responsive">
-                                    <table class="table table-sm table-striped table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Title</th>
-                                                <th scope="col" class="text-center">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach ($categories as $category)
-                                            <tr>
-                                                <th scope="row">{{ $category->id }}</th>
-                                                <td>{{ $category->title }}</td>
-                                                <td class="d-flex justify-content-evenly">
-                                                    <a href="{{ route('admin.category.show', $category->id) }}"><i class="far fa-eye"></i></a>
-                                                    <a href="{{ route('admin.category.edit', $category->id) }}"><i class="fas fa-pencil-alt"></i></a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-bar me-1"></i>
+                                        Bar Chart Example
+                                    </div>
+                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="card mb-4">
+                        <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
                                 DataTable Example
