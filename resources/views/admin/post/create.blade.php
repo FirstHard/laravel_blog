@@ -24,6 +24,13 @@
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                    <div class="form-group">
+                                        <label for="postContent" class="form-label">Post Content</label>
+                                        <textarea class="form-control" name="content" id="postContent">{{ old('content') ?? '' }}</textarea>
+                                        @error('content')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                     <div class="mt-3">
                                         <input type="submit" class="btn btn-success" value="Create Post">
                                     </div>
