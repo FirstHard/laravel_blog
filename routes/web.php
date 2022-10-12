@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Category\StoreController as AdminCategoryStoreCon
 use App\Http\Controllers\Admin\Category\ShowController as AdminCategoryShowController;
 use App\Http\Controllers\Admin\Category\EditController as AdminCategoryEditController;
 use App\Http\Controllers\Admin\Category\UpdateController as AdminCategoryUpdateController;
+use App\Http\Controllers\Admin\Category\DestroyController as AdminCategoryDestroyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/{category}', AdminCategoryShowController::class)->name('show');
         Route::get('/{category}/edit', AdminCategoryEditController::class)->name('edit');
         Route::patch('/{category}', AdminCategoryUpdateController::class)->name('update');
+        Route::delete('/{category}', AdminCategoryDestroyController::class)->name('delete');
     });
 });
 

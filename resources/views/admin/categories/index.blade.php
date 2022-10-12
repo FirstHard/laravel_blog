@@ -22,6 +22,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-12">
+                                @if (count($categories))
                                 <h4>Categories:</h4>
                                 <div class="table-responsive">
                                     <table class="table table-sm table-striped table-hover">
@@ -40,12 +41,20 @@
                                                 <td class="d-flex justify-content-evenly">
                                                     <a href="{{ route('admin.category.show', $category->id) }}"><i class="far fa-eye"></i></a>
                                                     <a href="{{ route('admin.category.edit', $category->id) }}" class="text-success"><i class="fas fa-pencil-alt"></i></a>
+                                                    <form action="{{ route('admin.category.delete', $category->id) }}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="text-danger border-0 bg-transparent"><i class="fas fa-trash-alt"></i></button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
                                     </table>
                                 </div>
+                                @else
+                                <h5>Categories have not been added yet</h5>
+                                @endif
                             </div>
                         </div>
                         <!-- <div class="card mb-4">
