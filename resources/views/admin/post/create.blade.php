@@ -15,7 +15,7 @@
                         </ol>
                         <div class="row">
                             <div class="col-4 mx-0">
-                                <form action="{{ route('admin.post.store') }}" method="post" id="storePost">
+                                <form action="{{ route('admin.post.store') }}" method="post" id="storePost" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="postTitle" class="form-label">Post title</label>
@@ -24,11 +24,33 @@
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
+                                    <div class="input-group mb-3">
                                         <label for="postContent" class="form-label">Post Content</label>
                                         <textarea class="form-control" name="content" id="postContent">{{ old('content') ?? '' }}</textarea>
                                         @error('content')
                                         <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <label class="input-group-text" for="previewImage">Preview image</label>
+                                            <input type="file" name="preview_image" class="form-control" id="previewImage">
+                                        </div>
+                                        @error('preview_image')
+                                        <div class="invalid-feedback d-block">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <label class="input-group-text" for="mainImage">Main image</label>
+                                            <input type="file" name="main_image" class="form-control" id="mainImage">
+                                        </div>
+                                        @error('main_image')
+                                        <div class="invalid-feedback d-block">
+                                            {{ $message }}
+                                        </div>
                                         @enderror
                                     </div>
                                     <div class="mt-3">
