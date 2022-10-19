@@ -18,14 +18,14 @@
                                 <form action="{{ route('admin.post.store') }}" method="post" id="storePost" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="postTitle" class="form-label">Post title</label>
+                                        <label for="postTitle" class="form-label">Post title *</label>
                                         <input name="title" type="title" class="form-control" id="postTitle" value="{{ old('title') ?? '' }}" placeholder="Input Post title">
                                         @error('title')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="input-group mb-3">
-                                        <label for="postContent" class="form-label">Post Content</label>
+                                        <label for="postContent" class="form-label">Post Content *</label>
                                         <textarea class="form-control" name="content" id="postContent">{{ old('content') ?? '' }}</textarea>
                                         @error('content')
                                         <span class="text-danger">{{ $message }}</span>
@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <div class="input-group">
-                                            <label class="input-group-text" for="previewImage">Preview image</label>
+                                            <label class="input-group-text" for="previewImage">Preview image *</label>
                                             <input type="file" name="preview_image" class="form-control" id="previewImage">
                                         </div>
                                         @error('preview_image')
@@ -44,10 +44,28 @@
                                     </div>
                                     <div class="mb-3">
                                         <div class="input-group">
-                                            <label class="input-group-text" for="mainImage">Main image</label>
+                                            <label class="input-group-text" for="mainImage">Main image *</label>
                                             <input type="file" name="main_image" class="form-control" id="mainImage">
                                         </div>
                                         @error('main_image')
+                                        <div class="invalid-feedback d-block">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <label class="input-group-text" for="category_id">Category *</label>
+                                            <select class="form-select form-select-sm" id="category_id" name="category_id" aria-label=".form-select-sm">
+                                                {{ !old('category_id') ? $first_selected  = 'selected' : $first_selected = '' }}
+                                                <option value="" {{ $first_selected }} disabled>Select Category</option>
+                                            @foreach ($categories as $category)
+                                                {{ $category->id == old('category_id') ? $selected = 'selected' : $selected = '' }}
+                                                <option value="{{ $category->id }}" {{ $selected }}>{{ $category->title }}</option>
+                                            @endforeach
+                                            </select>
+                                        </div>
+                                        @error('category_id')
                                         <div class="invalid-feedback d-block">
                                             {{ $message }}
                                         </div>
