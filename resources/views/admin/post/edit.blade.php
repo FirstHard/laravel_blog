@@ -15,18 +15,82 @@
                         </ol>
                         <div class="row">
                             <div class="col-4 mx-0">
-                                <form action="{{ route('admin.post.update', $post->id) }}" method="post" id="storePost">
+                                <form action="{{ route('admin.post.update', $post->id) }}" method="post" id="storePost" enctype="multipart/form-data">
                                     @csrf
                                     @method('patch')
                                     <div class="mb-3">
-                                        <label for="postTitle" class="form-label">Post title</label>
-                                        <input name="title" type="title" class="form-control" id="postTitle" placeholder="Input Post title" value="{{ $post->title }}">
+                                        <label for="postTitle" class="form-label">Post title *</label>
+                                        <input name="title" type="title" class="form-control" id="postTitle" value="{{ $post->title }}" placeholder="Input Post title">
                                         @error('title')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                    <div class="input-group mb-3">
+                                        <label for="postContent" class="form-label">Post Content *</label>
+                                        <textarea class="form-control" name="content" id="postContent">{{ $post->content }}</textarea>
+                                        @error('content')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <img src="{{ asset('storage/' . $post->preview_image) }}" class="img-fluid" alt="{{ $post->title . ' - Preview image' }}">
+                                        <div class="input-group">
+                                            <label class="input-group-text" for="previewImage">Preview image *</label>
+                                            <input type="file" name="preview_image" class="form-control" id="previewImage">
+                                        </div>
+                                        @error('preview_image')
+                                        <div class="invalid-feedback d-block">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <img src="{{ asset('storage/' . $post->main_image) }}" class="img-fluid" alt="{{ $post->title . ' - Main image' }}">
+                                        <div class="input-group">
+                                            <label class="input-group-text" for="mainImage">Main image *</label>
+                                            <input type="file" name="main_image" class="form-control" id="mainImage">
+                                        </div>
+                                        @error('main_image')
+                                        <div class="invalid-feedback d-block">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <label class="input-group-text" for="category_id">Category *</label>
+                                            <select class="form-select form-select-sm" id="category_id" name="category_id" aria-label=".form-select-sm">
+                                                {{ !$post->category_id ? $first_selected  = 'selected' : $first_selected = '' }}
+                                                <option value="" {{ $first_selected }} disabled>Select Category</option>
+                                            @foreach ($categories as $category)
+                                                {{ $category->id == $post->category_id ? $selected = 'selected' : $selected = '' }}
+                                                <option value="{{ $category->id }}" {{ $selected }}>{{ $category->title }}</option>
+                                            @endforeach
+                                            </select>
+                                        </div>
+                                        @error('category_id')
+                                        <div class="invalid-feedback d-block">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <label class="input-group-text" for="tag_ids">Tags</label>
+                                            <select class="form-select form-select-sm" multiple id="tag_ids" name="tag_ids[]" aria-label=".form-select-sm multiple ">
+                                            @foreach ($tags as $tag)
+                                                <option {{ is_array($post->tags->pluck('id')->toArray()) && in_array($tag->id, $post->tags->pluck('id')->toArray()) ? ' selected' : '' }} value="{{ $tag->id }}">{{ $tag->title }}</option>
+                                            @endforeach
+                                            </select>
+                                        </div>
+                                        @error('tag_ids')
+                                        <div class="invalid-feedback d-block">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
                                     <div class="mt-3">
-                                        <input type="submit" class="btn btn-success" value="Save Post">
+                                        <input type="submit" class="btn btn-success" value="Update Post">
                                     </div>
                                 </form>
                             </div>
