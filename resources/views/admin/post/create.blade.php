@@ -71,6 +71,21 @@
                                         </div>
                                         @enderror
                                     </div>
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <label class="input-group-text" for="tag_ids">Tags</label>
+                                            <select class="form-select form-select-sm" multiple id="tag_ids" name="tag_ids[]" aria-label=".form-select-sm multiple ">
+                                            @foreach ($tags as $tag)
+                                                <option {{ is_array(old('tag_ids')) && in_array($tag->id, old('tag_ids')) ? ' selected' : '' }} value="{{ $tag->id }}">{{ $tag->title }}</option>
+                                            @endforeach
+                                            </select>
+                                        </div>
+                                        @error('tag_ids')
+                                        <div class="invalid-feedback d-block">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
                                     <div class="mt-3">
                                         <input type="submit" class="btn btn-success" value="Create Post">
                                     </div>
