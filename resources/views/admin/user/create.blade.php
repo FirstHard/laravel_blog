@@ -18,9 +18,23 @@
                                 <form action="{{ route('admin.user.store') }}" method="post" id="storeUser">
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="userTitle" class="form-label">User title</label>
-                                        <input name="title" type="text" class="form-control" id="userTitle" value="{{ old('title') ?? '' }}" placeholder="Input User title">
-                                        @error('title')
+                                        <label for="userName" class="form-label">User title</label>
+                                        <input name="name" type="text" class="form-control" id="userName" value="{{ old('name') ?? '' }}" placeholder="Input User Name">
+                                        @error('name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="userEmail" class="form-label">User Email</label>
+                                        <input name="email" type="email" class="form-control" id="userEmail" value="{{ old('email') ?? '' }}" placeholder="Input User Email">
+                                        @error('email')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="userPassword" class="form-label">User password</label>
+                                        <input name="password" type="password" class="form-control" id="userPassword" value="{{ old('password') ?? '' }}" placeholder="Input User password">
+                                        @error('password')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>

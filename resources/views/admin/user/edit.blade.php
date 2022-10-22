@@ -25,6 +25,20 @@
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                    <div class="mb-3">
+                                        <label for="userEmail" class="form-label">User Email</label>
+                                        <input name="email" type="email" class="form-control" id="userEmail" value="{{ $user->email }}" placeholder="Input User Email">
+                                        @error('email')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="userPassword" class="form-label">User password</label>
+                                        <input name="password" type="password" class="form-control" id="userPassword" value="{{ $user->password }}" placeholder="Input User password">
+                                        @error('password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                     <div class="mt-3">
                                         <input type="submit" class="btn btn-success" value="Save User">
                                     </div>
