@@ -19,7 +19,7 @@
                                     @csrf
                                     <div class="mb-3">
                                         <label for="postTitle" class="form-label">Post title *</label>
-                                        <input name="title" type="title" class="form-control" id="postTitle" value="{{ old('title') ?? '' }}" placeholder="Input Post title">
+                                        <input name="title" type="text" class="form-control" id="postTitle" value="{{ old('title') ?? '' }}" placeholder="Input Post title">
                                         @error('title')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror

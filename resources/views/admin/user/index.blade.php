@@ -4,54 +4,60 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Edit a Tag "{{ $tag->title }}"</h1>
-                        You here:
-                        <ol class="breadcrumb mb-4 border-bottom">
-                            <li class="breadcrumb-item">Dashboard</li>
-                            <span class="px-1"> / </span>
-                            <li class="breadcrumb-item">Tags</li>
-                            <span class="px-1"> / </span>
-                            <li class="breadcrumb-item active">Edit a Tag "{{ $tag->title }}"</li>
-                        </ol>
                         <div class="row">
-                            <div class="col-4 mx-0">
-                                <form action="{{ route('admin.tag.update', $tag->id) }}" method="post" id="storeTag">
-                                    @csrf
-                                    @method('patch')
-                                    <div class="mb-3">
-                                        <label for="tagTitle" class="form-label">Tag title</label>
-                                        <input name="title" type="text" class="form-control" id="tagTitle" placeholder="Input Tag title" value="{{ $tag->title }}">
-                                        @error('title')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="mt-3">
-                                        <input type="submit" class="btn btn-success" value="Save Tag">
-                                    </div>
-                                </form>
+                            <div class="col-12">
+                                <h1 class="mt-4">Users</h1>
+                                You here:
+                                <ol class="breadcrumb border-bottom">
+                                    <li class="breadcrumb-item">Dashboard</li>
+                                    <span class="px-1"> / </span>
+                                    <li class="breadcrumb-item active">Users</li>
+                                </ol>
                             </div>
                         </div>
-                        <!-- <div class="row">
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Area Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        Bar Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                                </div>
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <a href="{{ route('admin.user.create') }}" class="btn btn-success">Add new User</a>
                             </div>
                         </div>
-                        <div class="card mb-4">
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                @if (count($users))
+                                <h4>Users:</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col" class="text-center">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($users as $user)
+                                            <tr>
+                                                <th scope="row">{{ $user->id }}</th>
+                                                <td>{{ $user->name }}</td>
+                                                <td class="d-flex justify-content-evenly">
+                                                    <a href="{{ route('admin.user.show', $user->id) }}"><i class="far fa-eye"></i></a>
+                                                    <a href="{{ route('admin.user.edit', $user->id) }}" class="text-success"><i class="fas fa-pencil-alt"></i></a>
+                                                    <form action="{{ route('admin.user.delete', $user->id) }}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="text-danger border-0 bg-transparent"><i class="fas fa-trash-alt"></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                @else
+                                <h5>Users have not been added yet</h5>
+                                @endif
+                            </div>
+                        </div>
+                        <!-- <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
                                 DataTable Example

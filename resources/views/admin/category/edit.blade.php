@@ -20,7 +20,7 @@
                                     @method('patch')
                                     <div class="mb-3">
                                         <label for="categoryTitle" class="form-label">Category title</label>
-                                        <input name="title" type="title" class="form-control" id="categoryTitle" placeholder="Input Category title" value="{{ $category->title }}">
+                                        <input name="title" type="text" class="form-control" id="categoryTitle" placeholder="Input Category title" value="{{ $category->title }}">
                                         @error('title')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
