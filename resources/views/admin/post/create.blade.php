@@ -4,47 +4,92 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4">Create new Post</h1>
                         You here:
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
+                        <ol class="breadcrumb mb-4 border-bottom">
+                            <li class="breadcrumb-item">Dashboard</li>
+                            <span class="px-1"> / </span>
+                            <li class="breadcrumb-item">Posts</li>
+                            <span class="px-1"> / </span>
+                            <li class="breadcrumb-item active">Create new Post</li>
                         </ol>
                         <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Primary Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                            <div class="col-4 mx-0">
+                                <form action="{{ route('admin.post.store') }}" method="post" id="storePost" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label for="postTitle" class="form-label">Post title *</label>
+                                        <input name="title" type="title" class="form-control" id="postTitle" value="{{ old('title') ?? '' }}" placeholder="Input Post title">
+                                        @error('title')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Warning Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    <div class="input-group mb-3">
+                                        <label for="postContent" class="form-label">Post Content *</label>
+                                        <textarea class="form-control" name="content" id="postContent">{{ old('content') ?? '' }}</textarea>
+                                        @error('content')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Success Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <label class="input-group-text" for="previewImage">Preview image *</label>
+                                            <input type="file" name="preview_image" class="form-control" id="previewImage">
+                                        </div>
+                                        @error('preview_image')
+                                        <div class="invalid-feedback d-block">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Danger Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <label class="input-group-text" for="mainImage">Main image *</label>
+                                            <input type="file" name="main_image" class="form-control" id="mainImage">
+                                        </div>
+                                        @error('main_image')
+                                        <div class="invalid-feedback d-block">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
-                                </div>
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <label class="input-group-text" for="category_id">Category *</label>
+                                            <select class="form-select form-select-sm" id="category_id" name="category_id" aria-label=".form-select-sm">
+                                                {{ !old('category_id') ? $first_selected  = 'selected' : $first_selected = '' }}
+                                                <option value="" {{ $first_selected }} disabled>Select Category</option>
+                                            @foreach ($categories as $category)
+                                                {{ $category->id == old('category_id') ? $selected = 'selected' : $selected = '' }}
+                                                <option value="{{ $category->id }}" {{ $selected }}>{{ $category->title }}</option>
+                                            @endforeach
+                                            </select>
+                                        </div>
+                                        @error('category_id')
+                                        <div class="invalid-feedback d-block">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <label class="input-group-text" for="tag_ids">Tags</label>
+                                            <select class="form-select form-select-sm" multiple id="tag_ids" name="tag_ids[]" aria-label=".form-select-sm multiple ">
+                                            @foreach ($tags as $tag)
+                                                <option {{ is_array(old('tag_ids')) && in_array($tag->id, old('tag_ids')) ? ' selected' : '' }} value="{{ $tag->id }}">{{ $tag->title }}</option>
+                                            @endforeach
+                                            </select>
+                                        </div>
+                                        @error('tag_ids')
+                                        <div class="invalid-feedback d-block">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mt-3">
+                                        <input type="submit" class="btn btn-success" value="Create Post">
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <!-- <div class="row">
@@ -560,7 +605,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">&copy; First`s Blog 2022</div>
+                            <div class="text-muted">&copy; First`s Blog 2021</div>
                             <!-- <div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;

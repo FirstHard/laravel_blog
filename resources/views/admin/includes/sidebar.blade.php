@@ -3,6 +3,10 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
+                            <a class="nav-link" href="{{ route('admin.post.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Posts
+                            </a>
                             <a class="nav-link" href="{{ route('admin.category.index') }}">
                                 <div class="sb-nav-link-icon"><i class="far fa-list-alt"></i></div>
                                 Categories

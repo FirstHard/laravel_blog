@@ -20,6 +20,14 @@ use App\Http\Controllers\Admin\Tag\EditController as AdminTagEditController;
 use App\Http\Controllers\Admin\Tag\UpdateController as AdminTagUpdateController;
 use App\Http\Controllers\Admin\Tag\DestroyController as AdminTagDestroyController;
 
+use App\Http\Controllers\Admin\Post\IndexController as AdminPostIndexController;
+use App\Http\Controllers\Admin\Post\CreateController as AdminPostCreateController;
+use App\Http\Controllers\Admin\Post\StoreController as AdminPostStoreController;
+use App\Http\Controllers\Admin\Post\ShowController as AdminPostShowController;
+use App\Http\Controllers\Admin\Post\EditController as AdminPostEditController;
+use App\Http\Controllers\Admin\Post\UpdateController as AdminPostUpdateController;
+use App\Http\Controllers\Admin\Post\DestroyController as AdminPostDestroyController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,6 +64,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/{tag}/edit', AdminTagEditController::class)->name('edit');
         Route::patch('/{tag}', AdminTagUpdateController::class)->name('update');
         Route::delete('/{tag}', AdminTagDestroyController::class)->name('delete');
+    });
+
+    Route::prefix('posts')->name('post.')->group(function () {
+        Route::get('/', AdminPostIndexController::class)->name('index');
+        Route::get('/create', AdminPostCreateController::class)->name('create');
+        Route::post('/', AdminPostStoreController::class)->name('store');
+        Route::get('/{post}', AdminPostShowController::class)->name('show');
+        Route::get('/{post}/edit', AdminPostEditController::class)->name('edit');
+        Route::patch('/{post}', AdminPostUpdateController::class)->name('update');
+        Route::delete('/{post}', AdminPostDestroyController::class)->name('delete');
     });
 });
 
