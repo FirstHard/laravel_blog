@@ -24,7 +24,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|unique:posts',
+            'title' => 'required|string',
             'content' => 'required|string',
             'preview_image' => 'nullable|file|image',
             'main_image' => 'nullable|file|image',
