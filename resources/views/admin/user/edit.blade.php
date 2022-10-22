@@ -4,29 +4,43 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Edit a Tag "{{ $tag->title }}"</h1>
+                        <h1 class="mt-4">Edit a User "{{ $user->name }}"</h1>
                         You here:
                         <ol class="breadcrumb mb-4 border-bottom">
                             <li class="breadcrumb-item">Dashboard</li>
                             <span class="px-1"> / </span>
-                            <li class="breadcrumb-item">Tags</li>
+                            <li class="breadcrumb-item">Users</li>
                             <span class="px-1"> / </span>
-                            <li class="breadcrumb-item active">Edit a Tag "{{ $tag->title }}"</li>
+                            <li class="breadcrumb-item active">Edit a User "{{ $user->name }}"</li>
                         </ol>
                         <div class="row">
                             <div class="col-4 mx-0">
-                                <form action="{{ route('admin.tag.update', $tag->id) }}" method="post" id="storeTag">
+                                <form action="{{ route('admin.user.update', $user->id) }}" method="post" id="storeUser">
                                     @csrf
                                     @method('patch')
                                     <div class="mb-3">
-                                        <label for="tagTitle" class="form-label">Tag title</label>
-                                        <input name="title" type="text" class="form-control" id="tagTitle" placeholder="Input Tag title" value="{{ $tag->title }}">
-                                        @error('title')
+                                        <label for="userName" class="form-label">User Name</label>
+                                        <input name="name" type="text" class="form-control" id="userName" placeholder="Input User Name" value="{{ $user->name }}">
+                                        @error('name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="userEmail" class="form-label">User Email</label>
+                                        <input name="email" type="email" class="form-control" id="userEmail" value="{{ $user->email }}" placeholder="Input User Email">
+                                        @error('email')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="userPassword" class="form-label">User password</label>
+                                        <input name="password" type="password" class="form-control" id="userPassword" value="{{ $user->password }}" placeholder="Input User password">
+                                        @error('password')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="mt-3">
-                                        <input type="submit" class="btn btn-success" value="Save Tag">
+                                        <input type="submit" class="btn btn-success" value="Save User">
                                     </div>
                                 </form>
                             </div>

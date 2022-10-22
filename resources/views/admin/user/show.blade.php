@@ -4,31 +4,21 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Edit a Tag "{{ $tag->title }}"</h1>
+                        <h1 class="mt-4">{{ $user->name }} <a href="{{ route('admin.user.edit', $user->id) }}" class="text-success"><i class="fas fa-pencil-alt"></i></a></h1>
                         You here:
                         <ol class="breadcrumb mb-4 border-bottom">
                             <li class="breadcrumb-item">Dashboard</li>
                             <span class="px-1"> / </span>
-                            <li class="breadcrumb-item">Tags</li>
+                            <li class="breadcrumb-item">Users</li>
                             <span class="px-1"> / </span>
-                            <li class="breadcrumb-item active">Edit a Tag "{{ $tag->title }}"</li>
+                            <li class="breadcrumb-item active">{{ $user->name }}</li>
                         </ol>
                         <div class="row">
                             <div class="col-4 mx-0">
-                                <form action="{{ route('admin.tag.update', $tag->id) }}" method="post" id="storeTag">
-                                    @csrf
-                                    @method('patch')
-                                    <div class="mb-3">
-                                        <label for="tagTitle" class="form-label">Tag title</label>
-                                        <input name="title" type="text" class="form-control" id="tagTitle" placeholder="Input Tag title" value="{{ $tag->title }}">
-                                        @error('title')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="mt-3">
-                                        <input type="submit" class="btn btn-success" value="Save Tag">
-                                    </div>
-                                </form>
+                                <h4>id:</h4>
+                                <p>{{ $user->id }}</p>
+                                <h4>Name:</h4>
+                                <p>{{ $user->name }}</p>
                             </div>
                         </div>
                         <!-- <div class="row">

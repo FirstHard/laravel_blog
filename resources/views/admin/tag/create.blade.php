@@ -19,7 +19,7 @@
                                     @csrf
                                     <div class="mb-3">
                                         <label for="tagTitle" class="form-label">Tag title</label>
-                                        <input name="title" type="title" class="form-control" id="tagTitle" value="{{ old('title') ?? '' }}" placeholder="Input Tag title">
+                                        <input name="title" type="text" class="form-control" id="tagTitle" value="{{ old('title') ?? '' }}" placeholder="Input Tag title">
                                         @error('title')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror

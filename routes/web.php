@@ -12,6 +12,14 @@ use App\Http\Controllers\Admin\Category\EditController as AdminCategoryEditContr
 use App\Http\Controllers\Admin\Category\UpdateController as AdminCategoryUpdateController;
 use App\Http\Controllers\Admin\Category\DestroyController as AdminCategoryDestroyController;
 
+use App\Http\Controllers\Admin\Post\IndexController as AdminPostIndexController;
+use App\Http\Controllers\Admin\Post\CreateController as AdminPostCreateController;
+use App\Http\Controllers\Admin\Post\StoreController as AdminPostStoreController;
+use App\Http\Controllers\Admin\Post\ShowController as AdminPostShowController;
+use App\Http\Controllers\Admin\Post\EditController as AdminPostEditController;
+use App\Http\Controllers\Admin\Post\UpdateController as AdminPostUpdateController;
+use App\Http\Controllers\Admin\Post\DestroyController as AdminPostDestroyController;
+
 use App\Http\Controllers\Admin\Tag\IndexController as AdminTagIndexController;
 use App\Http\Controllers\Admin\Tag\CreateController as AdminTagCreateController;
 use App\Http\Controllers\Admin\Tag\StoreController as AdminTagStoreController;
@@ -20,13 +28,13 @@ use App\Http\Controllers\Admin\Tag\EditController as AdminTagEditController;
 use App\Http\Controllers\Admin\Tag\UpdateController as AdminTagUpdateController;
 use App\Http\Controllers\Admin\Tag\DestroyController as AdminTagDestroyController;
 
-use App\Http\Controllers\Admin\Post\IndexController as AdminPostIndexController;
-use App\Http\Controllers\Admin\Post\CreateController as AdminPostCreateController;
-use App\Http\Controllers\Admin\Post\StoreController as AdminPostStoreController;
-use App\Http\Controllers\Admin\Post\ShowController as AdminPostShowController;
-use App\Http\Controllers\Admin\Post\EditController as AdminPostEditController;
-use App\Http\Controllers\Admin\Post\UpdateController as AdminPostUpdateController;
-use App\Http\Controllers\Admin\Post\DestroyController as AdminPostDestroyController;
+use App\Http\Controllers\Admin\User\IndexController as AdminUserIndexController;
+use App\Http\Controllers\Admin\User\CreateController as AdminUserCreateController;
+use App\Http\Controllers\Admin\User\StoreController as AdminUserStoreController;
+use App\Http\Controllers\Admin\User\ShowController as AdminUserShowController;
+use App\Http\Controllers\Admin\User\EditController as AdminUserEditController;
+use App\Http\Controllers\Admin\User\UpdateController as AdminUserUpdateController;
+use App\Http\Controllers\Admin\User\DestroyController as AdminUserDestroyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +82,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/{post}/edit', AdminPostEditController::class)->name('edit');
         Route::patch('/{post}', AdminPostUpdateController::class)->name('update');
         Route::delete('/{post}', AdminPostDestroyController::class)->name('delete');
+    });
+
+    Route::prefix('users')->name('user.')->group(function () {
+        Route::get('/', AdminUserIndexController::class)->name('index');
+        Route::get('/create', AdminUserCreateController::class)->name('create');
+        Route::post('/', AdminUserStoreController::class)->name('store');
+        Route::get('/{user}', AdminUserShowController::class)->name('show');
+        Route::get('/{user}/edit', AdminUserEditController::class)->name('edit');
+        Route::patch('/{user}', AdminUserUpdateController::class)->name('update');
+        Route::delete('/{user}', AdminUserDestroyController::class)->name('delete');
     });
 });
 

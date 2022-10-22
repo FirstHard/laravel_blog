@@ -3,13 +3,17 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="{{ route('admin.post.index') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Posts
+                            <a class="nav-link" href="{{ route('admin.user.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                Users
                             </a>
                             <a class="nav-link" href="{{ route('admin.category.index') }}">
                                 <div class="sb-nav-link-icon"><i class="far fa-list-alt"></i></div>
                                 Categories
+                            </a>
+                            <a class="nav-link" href="{{ route('admin.post.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Posts
                             </a>
                             <a class="nav-link" href="{{ route('admin.tag.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tags"></i></div>
