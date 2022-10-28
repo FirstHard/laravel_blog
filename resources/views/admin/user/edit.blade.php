@@ -40,6 +40,24 @@
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div> --}}
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <label class="input-group-text" for="role">Role *</label>
+                                            <select class="form-select form-select-sm" id="role" name="role" aria-label=".form-select-sm">
+                                                {{ !old('role') ? $first_selected  = 'selected' : $first_selected = '' }}
+                                                <option value="" {{ $first_selected }} disabled>Select User role</option>
+                                            @foreach ($roles as $id => $role)
+                                                {{ $id == $user->role ? $selected = 'selected' : $selected = '' }}
+                                                <option value="{{ $id }}" {{ $selected }}>{{ $role }}</option>
+                                            @endforeach
+                                            </select>
+                                        </div>
+                                        @error('role')
+                                        <div class="invalid-feedback d-block">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
                                     <div class="mt-3">
                                         <input type="submit" class="btn btn-success" value="Save User">
                                     </div>

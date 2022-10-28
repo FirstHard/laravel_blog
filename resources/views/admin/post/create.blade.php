@@ -60,7 +60,7 @@
                                                 {{ !old('category_id') ? $first_selected  = 'selected' : $first_selected = '' }}
                                                 <option value="" {{ $first_selected }} disabled>Select Category</option>
                                             @foreach ($categories as $category)
-                                                {{ $category->id == old('category_id') ? $selected = 'selected' : $selected = '' }}
+                                                {{ old('category_id') && $category->id == old('category_id') ? $selected = 'selected' : $selected = '' }}
                                                 <option value="{{ $category->id }}" {{ $selected }}>{{ $category->title }}</option>
                                             @endforeach
                                             </select>
