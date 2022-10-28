@@ -13,6 +13,10 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
+    const ROLE_ADMIN = 0;
+    const ROLE_GUEST = 1;
+    const ROLE_USER = 2;
+
     protected $table = 'users';
     protected $guarded = false;
 
@@ -45,4 +49,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function getRoles()
+    {
+        return [
+            self::ROLE_ADMIN => 'Administrator',
+            self::ROLE_GUEST => 'Guest',
+            self::ROLE_USER => 'User'
+        ];
+    }
 }
