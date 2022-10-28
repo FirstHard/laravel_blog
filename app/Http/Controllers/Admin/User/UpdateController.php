@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\UpdateRequest as UserUpdateRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UpdateController extends Controller
 {

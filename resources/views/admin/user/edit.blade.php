@@ -18,27 +18,28 @@
                                 <form action="{{ route('admin.user.update', $user->id) }}" method="post" id="storeUser">
                                     @csrf
                                     @method('patch')
+                                    <input type="hidden" name="user_id" value="{{ $user->id }}">
                                     <div class="mb-3">
                                         <label for="userName" class="form-label">User Name</label>
-                                        <input name="name" type="text" class="form-control" id="userName" placeholder="Input User Name" value="{{ $user->name }}">
+                                        <input name="name" type="text" class="form-control" id="userName" placeholder="Input new User Name" value="{{ $user->name }}">
                                         @error('name')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="userEmail" class="form-label">User Email</label>
-                                        <input name="email" type="email" class="form-control" id="userEmail" value="{{ $user->email }}" placeholder="Input User Email">
+                                        <input name="email" type="email" class="form-control" id="userEmail" value="{{ $user->email }}" placeholder="Input new User Email">
                                         @error('email')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="mb-3">
+                                    {{-- <div class="mb-3">
                                         <label for="userPassword" class="form-label">User password</label>
-                                        <input name="password" type="password" class="form-control" id="userPassword" value="{{ $user->password }}" placeholder="Input User password">
+                                        <input name="password" type="password" class="form-control" id="userPassword" value="" placeholder="Input new User password">
                                         @error('password')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
-                                    </div>
+                                    </div> --}}
                                     <div class="mt-3">
                                         <input type="submit" class="btn btn-success" value="Save User">
                                     </div>
